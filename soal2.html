@@ -1,0 +1,53 @@
+<body>
+   <center> Masukkan input  <input type="text" id="isi"><br><br>
+    <input type="radio" name="nameroman" id="numroman1" onclick="romnum()">Roman ke nomor
+    <input type="radio" name="nameroman" id="numroman2" onclick="numrom()">nomor ke Roman
+    <br><br>
+    <button id="button"onclick="input(this.value)">cek sekarang!</button>
+
+    <p id="output"></p>
+</center>
+</body>
+<script>
+
+function romnum(x){
+        x=document.getElementById("isi").value
+        var result=0;
+        var decimal =[1000,900,500,400,100,90,50,40,10,9,5,4,1];
+        var roman = ["M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"];
+
+        for(i=0;i<=decimal.length;i++){
+            while(x.indexOf(roman[i])==0){
+                result +=decimal[i];
+                x = x.replace(roman[i],"");
+            }       
+        }
+        if(x!==""){
+            alert("ya masukkin huruf romawi gaaaan")
+        }else{
+        document.getElementById("button").value=result;
+        }
+    }
+    function numrom(x){
+        
+    x=parseInt(document.getElementById("isi").value)
+    var I = ["","I", "II","III","IV","V","VI","VII","VIII","IX"];
+    var X = ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"];
+    var C = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"];
+    var M = ["","M","MM","MMM"];
+
+    if(isNaN(x)){
+        alert("nomor gaaan")
+    }else{
+        document.getElementById("button").value= M[parseInt(x/1000)]+C[parseInt((x%1000)/100)]+X[parseInt(((x%1000)%100)/10)]+I[x%10]
+    }
+}
+    function input(x){
+
+
+        document.getElementById("output").innerHTML=x        
+
+    }
+
+</script>
+
